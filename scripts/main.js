@@ -46,20 +46,30 @@ document.addEventListener("DOMContentLoaded", function () {
 
         const jsonData = JSON.stringify(orderData);
 
-        // Send the JSON data to the backend using the fetch API
-        fetch("http://127.0.0.1:8080/process", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body: jsonData
-        })
-        .then(response => response.json())
-        .then(data => {
-            // Handle the response from the backend if needed
-        })
-        .catch(error => {
-            console.error("Error sending order data:", error);
-        });
+         //initialize the "save" button
+           const mainButton = window.Telegram.WebApp.MainButton;
+           mainButton.text = "Save Preferences";
+           mainButton.enable();
+           mainButton.show();
+           // and make it send the "foods" object (as JSON string) back to the backend
+           mainButton.onClick(function(){
+             window.Telegram.WebApp.sendData(jsonData);
+           })
+
+//        // Send the JSON data to the backend using the fetch API
+//        fetch("http://127.0.0.1:8080/process", {
+//            method: "POST",
+//            headers: {
+//                "Content-Type": "application/json"
+//            },
+//            body: jsonData
+//        })
+//        .then(response => response.json())
+//        .then(data => {
+//            // Handle the response from the backend if needed
+//        })
+//        .catch(error => {
+//            console.error("Error sending order data:", error);
+//        });
     });
 });
