@@ -54,7 +54,16 @@ document.addEventListener("DOMContentLoaded", function () {
            // and make it send the "foods" object (as JSON string) back to the backend
            mainButton.onClick(function(){
              window.Telegram.WebApp.sendData(jsonData);
+
+             //--
+             window.Telegram.WebApp.close();
            })
+           //--
+            window.Telegram.WebApp.ready();
+
+
+
+
 
 //        // Send the JSON data to the backend using the fetch API
 //        fetch("http://127.0.0.1:8080/process", {
